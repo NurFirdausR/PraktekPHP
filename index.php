@@ -1,5 +1,10 @@
 <?php 
+session_start();
+if(isset($_SESSION['username'])== 0) { /* Halaman ini tidak dapat diakses jika belum ada yang login */
+	header('Location: login.php'); 
+}
 include_once "connect.php";
+
 // include_once "controller/productController.php.php";
 
 ?>
@@ -24,7 +29,7 @@ include_once "connect.php";
   <!-- inject:css -->
   <link rel="stylesheet" href="asset/css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="asset/images/favicon.png" />
+  <link rel="shortcut icon" href="asset/ images/favicon.png" />
 </head>
 <style>
 </style>
@@ -56,9 +61,11 @@ include_once "connect.php";
                         include "dashboard.php";
                     } elseif ($_GET['halaman'] == "product_tambah") {
                         include "product_tambah.php";
+                    } elseif ($_GET['halaman'] == "product_edit") {
+                      include "product_edit.php";
                     } elseif ($_GET['halaman'] == "categories") {
-                      include "categories.php";
-                  }
+                        include "categories.php";
+                    }
                     
 
                 } else {
@@ -106,7 +113,11 @@ include_once "connect.php";
   <script src="asset/js/dashboard.js"></script>
   <script src="asset/js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
-</body>
+  
+
+   
+  </body>
 
 </html>
+
 

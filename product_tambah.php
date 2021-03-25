@@ -5,7 +5,7 @@
                   <p class="card-description">
                     Product
                   </p>
-                  <form action="product_store.php" method="POST" class="forms-sample">
+                  <form action="controller/product/product_store.php" method="POST" class="forms-sample">
                     <div class="form-group">
                       <label for="nama_product">Nama Laptop</label>
                       <input type="text" class="form-control" name="nama_product" id="nama_product" placeholder="Nama Product">
@@ -28,10 +28,12 @@
                     </div>
                     <div class="form-group">
                       <label for="categories_product">Categories Product</label>
-                      <select name="" id=""></select>
-                      <input type="text" class="form-control" name="categories_product" id="categories_product" placeholder="processor,tebal,warna">
+                      <select class="form-control" name="categories_product" id="categories_product">
+                          <option value="1">Elektronik</option>
+                      </select>
+                      <!-- <input type="text" class="form-control" name="categories_product" id="categories_product" placeholder="processor,tebal,warna"> -->
                     </div>
-                    <button type="submit" class="btn btn-primary mr-2" name="proses">Submit</button>
+                    <button type="submit" class="btn btn-primary mr-2" name="proses" value="simpan">Submit</button>
                     <a href="index.php?halaman=dashboard_product" class="btn btn-light">Back</a >
                   </form>
                 </div>

@@ -16,5 +16,8 @@ try {
 } catch (PDOException $e) {
     echo 'Gagal Menghubungkan ke Databases' . $e->getMessage();
 }
+// $config[‘base_url’], disesuaikan menjadi :
+
+
 
 ?>
