@@ -16,9 +16,9 @@ class ProductControllers {
         $sql="SELECT product.*,categories.nama_categories AS kategori FROM product 
         INNER JOIN categories ON categories.id = product.id_categories";
     
-        $ps = $this->conn->prepare($sql); 
-        $ps->execute(); 
-        $result=$ps->fetchAll(); 
+        $stmt = $this->conn->prepare($sql); 
+        $stmt->execute(); 
+        $result=$stmt->fetchAll(); 
         return $result;
     }
     public function edit($id)
@@ -33,31 +33,31 @@ class ProductControllers {
     {
         
         $sql = "SELECT product.*, categories.nama_categories AS kategori FROM product INNER JOIN categories ON categories.id = product.id_categories WHERE product.id = ?";
-        $ps = $this->conn->prepare($sql);
-        $ps->execute($id);
-        $rs=$ps->fetch();
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute($id);
+        $rs= $stmt->fetch();
         return $rs;
     }
 
     public function simpan($data)
 	{
 		$sql = "INSERT INTO product(nama_product,gambar_product,deskripsi_product,harga_product,spesifikasi_product,id_categories) VALUES (?,?,?,?,?,?)";
-		$ps = $this->conn->prepare($sql); 
-		$ps->execute($data); 
+		$stmt = $this->conn->prepare($sql); 
+		$stmt->execute($data); 
 	}
     
     public function ubah($data)
     {
 		$sql = "UPDATE product SET nama_product=?,gambar_product=?,deskripsi_product=?,harga_product=?,spesifikasi_product=?,id_categories=? WHERE id=?";
-		$ps = $this->conn->prepare($sql); 
-		$ps->execute($data); 
+		$stmt = $this->conn->prepare($sql); 
+		$stmt->execute($data); 
 	}
 
     public function hapus($id)
 	{
 		$sql = "DELETE FROM product WHERE id=?";
-		$ps = $this->conn->prepare($sql); 
-		$ps->execute($id); 
+		$stmt = $this->conn->prepare($sql); 
+		$stmt->execute($id); 
 	}
 
    

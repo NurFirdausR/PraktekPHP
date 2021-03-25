@@ -3,10 +3,10 @@ include_once '../../connect.php';
 include_once 'productController.php';
 
 //3.proses dengan menciptakan object dari model Produk (seleksi tombol)
-$tombol = $_POST['proses']; //tangkap request tombol
-$model = new ProductControllers(); //ciptakan object dari ProdukModel.php
+$tombol = $_POST['proses']; 
+$model = new ProductControllers(); 
 if($tombol == 'hapus'){
-	$id = [$_POST['idx']]; //tangkap hidden field idx
+	$id = [$_POST['idx']]; 
 	$model->hapus($id);
     header('location:../../index.php?halaman=dashboard_product');
 
