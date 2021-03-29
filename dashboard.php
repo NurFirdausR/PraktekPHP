@@ -5,6 +5,7 @@ $rs = $model->getAll();
 
 // var_dump($rs['nama_product']);
 
+
 ?>
 
 <style>
