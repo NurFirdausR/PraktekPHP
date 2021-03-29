@@ -1,7 +1,7 @@
-<?php 
+<?php
 session_start();
-if(isset($_SESSION['username'])== 0) { /* Halaman ini tidak dapat diakses jika belum ada yang login */
-	header('Location: login.php'); 
+if (isset($_SESSION['username']) == 0) { /* Halaman ini tidak dapat diakses jika belum ada yang login */
+  header('Location: login.php');
 }
 include_once "connect.php";
 
@@ -29,10 +29,11 @@ include_once "connect.php";
   <!-- inject:css -->
   <link rel="stylesheet" href="asset/css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="asset/ images/favicon.png" />
+  <link rel="shortcut icon" href="asset/images/favicon.png" />
 </head>
 <style>
 </style>
+
 <body>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
@@ -40,48 +41,46 @@ include_once "connect.php";
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
       <!-- partial:partials/_settings-panel.html -->
-    <?php include_once "partial/rsetting-rightbar.php" ?>
+      <?php include_once "partial/rsetting-rightbar.php" ?>
       <!-- partial -->
       <!-- partial:partials/_sidebar.html -->
       <?php include_once "partial/sidebar.php" ?>
       <!-- partial -->
 
 
-      
+
       <div class="main-panel">
         <div class="content-wrapper">
-       
+
           <div class="row">
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                <?php
-                if (isset($_GET['halaman'])) {
+                  <?php
+                  if (isset($_GET['halaman'])) {
                     if ($_GET['halaman'] == "dashboard_product") {
-                        include "dashboard.php";
+                      include "dashboard.php";
                     } elseif ($_GET['halaman'] == "product_tambah") {
-                        include "product_tambah.php";
+                      include "product_tambah.php";
                     } elseif ($_GET['halaman'] == "product_edit") {
                       include "product_edit.php";
                     } elseif ($_GET['halaman'] == "categories") {
-                        include "categories.php";
+                      include "categories.php";
                     }
-                    
-
-                } else {
+                  } else {
                     include "home.php";
-                }
-                ?>
+                  }
+                  ?>
                 </div>
               </div>
             </div>
-            
+
           </div>
-       
+
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
-       
+
         <!-- partial -->
       </div>
       <!-- main-panel ends -->
@@ -90,7 +89,7 @@ include_once "connect.php";
 
   </div>
   <!-- container-scroller -->
-      <?php include_once "partial/footer.php" ?>
+  <?php include_once "partial/footer.php" ?>
 
   <!-- plugins:js -->
   <script src="asset/vendors/js/vendor.bundle.base.js"></script>
@@ -111,13 +110,35 @@ include_once "connect.php";
   <!-- endinject -->
   <!-- Custom js for this page-->
   <script src="asset/js/dashboard.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+        <script src='asset/bootstrap/js/bootstrap.bundle.min.js' type='text/javascript'></script> -->
   <script src="asset/js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
-  
+  <script type='text/javascript'>
+    $(document).ready(function() {
 
-   
-  </body>
+      $('.detail-product').click(function() {
+
+        var userid = $(this).attr('data-id');
+
+        // AJAX request
+        $.ajax({
+          url: 'product_show.php',
+          type: 'post',
+          data: {
+            userid: userid
+          },
+          success: function(response) {
+            // Add response in Modal body
+            $('.modal-content').html(response);
+
+            // Display Modal
+            $('#empModal').modal('show');
+          }
+        });
+      });
+    });
+  </script>
+</body>
 
 </html>
-
-
